@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donkai Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: rgba(255, 183, 168, 0.557); */
+            background-image: url('webseite_background.png'); /* Ersetze 'dein-bild.jpg' mit dem Pfad zu deinem Bild */
+            background-size: cover; /* Passt das Bild an den Bildschirm an */
+            background-position: center; /* Bild wird zentriert */
+            background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
+            text-align: center;
+            padding: 20px;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        .countdown-finished {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: green;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .contact-links {
+            margin-top: 20px;
+        }
+        .contact-links a {
+            text-decoration: none;
+            color: #007bff;
+            margin: 0 10px;
+        }
+ 	.privacy-policy {
+            margin-top: 40px;
+	    font-size: 14px;
+	    color: x555;
+        } 
+	.privacy-policy a {
+            color: #0073e6;
+ 	    text-decoration: none;
+        } 
+	.privacy-policy a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo -->
+    <img src="donkai_full_logo.png" alt="Logo" class="logo">
+
+    <!-- Willkommen Text -->
+    <h1>Willkommen</h1>
+
+    <!-- Beschreibung -->
+    <p>Preview & Datenschutzerklärung zur App</p>
+
+    <!-- Kontaktinformationen -->
+    <div class="contact-links">
+        <p>Kontakt:</p>
+        <a href="mailto:piakarius53@gmail.com">E-Mail</a>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown"></div>
+    <div class="countdown-finished" id="countdown-finished">
+        <p>Die Zeit ist abgelaufen! Besuche jetzt die <a href="https://www.officialwebsite.com" target="_blank">offizielle Webseite</a>.</p>
+    </div>
+
+    <script>
+        // Zielzeit für den Countdown (1. März 2025, 18:00 Uhr)
+        const targetDate = new Date("Apr 1, 2025 18:00:00").getTime();
+
+        // Update der Zeit jedes 1 Sekunde
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            // Berechne Tage, Stunden, Minuten und Sekunden
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Zeige den Countdown an
+            document.getElementById("countdown").innerHTML = days + " Tage " + hours + " Stunden " + minutes + " Minuten " + seconds + " Sekunden";
+
+            // Wenn die Zeit abgelaufen ist
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("countdown-finished").style.display = "block";
+            }
+        }, 1000);
+    </script>
+  <!-- Datenschutzrichtlinien -->
+  <div id="privacy-policy">
+    <p>Mit der Nutzung dieser Webseite stimmst du unserer <a href="#datenschutz" onclick="alert('Datenschutzerklärung: Wir erheben keine persönlichen Daten auf dieser Seite.')">Datenschutzerklärung</a> zu.</p>
+  </div>
+
+  <!-- Datenschutz-Information -->
+  <div id="datenschutz" style="display:none;">
+    <h2>Datenschutzerklärung</h2>
+    <p>Diese Webseite erhebt keine persönlichen Daten von den Besuchern. Es werden lediglich Cookies genutzt, um den Countdown anzuzeigen und die Seite zu optimieren. Wir speichern keine persönlichen Informationen.</p>
+  </div>
+
+</body>
+</html>
